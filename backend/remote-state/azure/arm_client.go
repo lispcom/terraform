@@ -25,7 +25,7 @@ type ArmClient struct {
 	storageAccountName string
 }
 
-func buildArmClient(ctx context.Context, config BackendConfig) (*ArmClient, error) {
+func buildArmClient(config BackendConfig) (*ArmClient, error) {
 	env, err := authentication.DetermineEnvironment(config.Environment)
 	if err != nil {
 		return nil, err
@@ -45,7 +45,7 @@ func buildArmClient(ctx context.Context, config BackendConfig) (*ArmClient, erro
 	builder := authentication.Builder{
 		ClientID:       config.ClientID,
 		ClientSecret:   config.ClientSecret,
-		SubscriptionID: config.ClientSecret,
+		SubscriptionID: config.SubscriptionID,
 		TenantID:       config.TenantID,
 		Environment:    config.Environment,
 
@@ -58,7 +58,7 @@ func buildArmClient(ctx context.Context, config BackendConfig) (*ArmClient, erro
 		return nil, fmt.Errorf("Error building ARM Config: %+v", err)
 	}
 
-	oauthConfig, err := adal.NewOAuthConfig(env.ActiveDirectoryEndpoint, config.TenantID)
+	oauthConfig, err := adal.NewOAuthConfig(env.ActiveDirectoryEndpoint, armConfig.TenantID)
 	if err != nil {
 		return nil, err
 	}
@@ -68,11 +68,11 @@ func buildArmClient(ctx context.Context, config BackendConfig) (*ArmClient, erro
 		return nil, err
 	}
 
-	accountsClient := armStorage.NewAccountsClientWithBaseURI(env.ResourceManagerEndpoint, config.SubscriptionID)
+	accountsClient := armStorage.NewAccountsClientWithBaseURI(env.ResourceManagerEndpoint, armConfig.SubscriptionID)
 	client.configureClient(&accountsClient.Client, auth)
 	client.storageAccountsClient = &accountsClient
 
-	groupsClient := resources.NewGroupsClientWithBaseURI(env.ResourceManagerEndpoint, config.SubscriptionID)
+	groupsClient := resources.NewGroupsClientWithBaseURI(env.ResourceManagerEndpoint, armConfig.SubscriptionID)
 	client.configureClient(&groupsClient.Client, auth)
 	client.groupsClient = &groupsClient
 

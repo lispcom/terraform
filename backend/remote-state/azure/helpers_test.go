@@ -32,8 +32,7 @@ func buildTestClient(t *testing.T, res resourceNames) *ArmClient {
 		t.Fatal("Azure credentials missing or incomplete")
 	}
 
-	ctx := context.TODO()
-	armClient, err := buildArmClient(ctx, BackendConfig{
+	armClient, err := buildArmClient(BackendConfig{
 		SubscriptionID:     subscriptionID,
 		TenantID:           tenantID,
 		ClientID:           clientID,

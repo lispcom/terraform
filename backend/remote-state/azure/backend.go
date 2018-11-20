@@ -133,7 +133,7 @@ func (b *Backend) configure(ctx context.Context) error {
 		TenantID:           data.Get("arm_tenant_id").(string),
 	}
 
-	armClient, err := buildArmClient(ctx, config)
+	armClient, err := buildArmClient(config)
 	if err != nil {
 		return err
 	}
