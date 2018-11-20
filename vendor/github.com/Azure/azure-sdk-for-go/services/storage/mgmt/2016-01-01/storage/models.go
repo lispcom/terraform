@@ -45,9 +45,9 @@ type AccountStatus string
 
 const (
 	// Available ...
-	Available AccountStatus = "available"
+	Available AccountStatus = "Available"
 	// Unavailable ...
-	Unavailable AccountStatus = "unavailable"
+	Unavailable AccountStatus = "Unavailable"
 )
 
 // PossibleAccountStatusValues returns an array of possible values for the AccountStatus const type.
@@ -55,34 +55,19 @@ func PossibleAccountStatusValues() []AccountStatus {
 	return []AccountStatus{Available, Unavailable}
 }
 
-// HTTPProtocol enumerates the values for http protocol.
-type HTTPProtocol string
-
-const (
-	// HTTPS ...
-	HTTPS HTTPProtocol = "https"
-	// Httpshttp ...
-	Httpshttp HTTPProtocol = "https,http"
-)
-
-// PossibleHTTPProtocolValues returns an array of possible values for the HTTPProtocol const type.
-func PossibleHTTPProtocolValues() []HTTPProtocol {
-	return []HTTPProtocol{HTTPS, Httpshttp}
-}
-
 // KeyPermission enumerates the values for key permission.
 type KeyPermission string
 
 const (
-	// Full ...
-	Full KeyPermission = "Full"
-	// Read ...
-	Read KeyPermission = "Read"
+	// FULL ...
+	FULL KeyPermission = "FULL"
+	// READ ...
+	READ KeyPermission = "READ"
 )
 
 // PossibleKeyPermissionValues returns an array of possible values for the KeyPermission const type.
 func PossibleKeyPermissionValues() []KeyPermission {
-	return []KeyPermission{Full, Read}
+	return []KeyPermission{FULL, READ}
 }
 
 // Kind enumerates the values for kind.
@@ -98,60 +83,6 @@ const (
 // PossibleKindValues returns an array of possible values for the Kind const type.
 func PossibleKindValues() []Kind {
 	return []Kind{BlobStorage, Storage}
-}
-
-// Permissions enumerates the values for permissions.
-type Permissions string
-
-const (
-	// A ...
-	A Permissions = "a"
-	// C ...
-	C Permissions = "c"
-	// D ...
-	D Permissions = "d"
-	// L ...
-	L Permissions = "l"
-	// P ...
-	P Permissions = "p"
-	// R ...
-	R Permissions = "r"
-	// U ...
-	U Permissions = "u"
-	// W ...
-	W Permissions = "w"
-)
-
-// PossiblePermissionsValues returns an array of possible values for the Permissions const type.
-func PossiblePermissionsValues() []Permissions {
-	return []Permissions{A, C, D, L, P, R, U, W}
-}
-
-// Permissions1 enumerates the values for permissions 1.
-type Permissions1 string
-
-const (
-	// Permissions1A ...
-	Permissions1A Permissions1 = "a"
-	// Permissions1C ...
-	Permissions1C Permissions1 = "c"
-	// Permissions1D ...
-	Permissions1D Permissions1 = "d"
-	// Permissions1L ...
-	Permissions1L Permissions1 = "l"
-	// Permissions1P ...
-	Permissions1P Permissions1 = "p"
-	// Permissions1R ...
-	Permissions1R Permissions1 = "r"
-	// Permissions1U ...
-	Permissions1U Permissions1 = "u"
-	// Permissions1W ...
-	Permissions1W Permissions1 = "w"
-)
-
-// PossiblePermissions1Values returns an array of possible values for the Permissions1 const type.
-func PossiblePermissions1Values() []Permissions1 {
-	return []Permissions1{Permissions1A, Permissions1C, Permissions1D, Permissions1L, Permissions1P, Permissions1R, Permissions1U, Permissions1W}
 }
 
 // ProvisioningState enumerates the values for provisioning state.
@@ -184,61 +115,6 @@ const (
 // PossibleReasonValues returns an array of possible values for the Reason const type.
 func PossibleReasonValues() []Reason {
 	return []Reason{AccountNameInvalid, AlreadyExists}
-}
-
-// ResourceEnum enumerates the values for resource enum.
-type ResourceEnum string
-
-const (
-	// ResourceEnumB ...
-	ResourceEnumB ResourceEnum = "b"
-	// ResourceEnumC ...
-	ResourceEnumC ResourceEnum = "c"
-	// ResourceEnumF ...
-	ResourceEnumF ResourceEnum = "f"
-	// ResourceEnumS ...
-	ResourceEnumS ResourceEnum = "s"
-)
-
-// PossibleResourceEnumValues returns an array of possible values for the ResourceEnum const type.
-func PossibleResourceEnumValues() []ResourceEnum {
-	return []ResourceEnum{ResourceEnumB, ResourceEnumC, ResourceEnumF, ResourceEnumS}
-}
-
-// ResourceTypes enumerates the values for resource types.
-type ResourceTypes string
-
-const (
-	// ResourceTypesC ...
-	ResourceTypesC ResourceTypes = "c"
-	// ResourceTypesO ...
-	ResourceTypesO ResourceTypes = "o"
-	// ResourceTypesS ...
-	ResourceTypesS ResourceTypes = "s"
-)
-
-// PossibleResourceTypesValues returns an array of possible values for the ResourceTypes const type.
-func PossibleResourceTypesValues() []ResourceTypes {
-	return []ResourceTypes{ResourceTypesC, ResourceTypesO, ResourceTypesS}
-}
-
-// Services enumerates the values for services.
-type Services string
-
-const (
-	// B ...
-	B Services = "b"
-	// F ...
-	F Services = "f"
-	// Q ...
-	Q Services = "q"
-	// T ...
-	T Services = "t"
-)
-
-// PossibleServicesValues returns an array of possible values for the Services const type.
-func PossibleServicesValues() []Services {
-	return []Services{B, F, Q, T}
 }
 
 // SkuName enumerates the values for sku name.
@@ -437,7 +313,7 @@ func (a *Account) UnmarshalJSON(body []byte) error {
 	return nil
 }
 
-// AccountCheckNameAvailabilityParameters the parameters used to check the availabity of the storage account name.
+// AccountCheckNameAvailabilityParameters ...
 type AccountCheckNameAvailabilityParameters struct {
 	Name *string `json:"name,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -543,7 +419,7 @@ type AccountKey struct {
 	KeyName *string `json:"keyName,omitempty"`
 	// Value - Base 64-encoded value of the key.
 	Value *string `json:"value,omitempty"`
-	// Permissions - Permissions for the key -- read-only or full permissions. Possible values include: 'Read', 'Full'
+	// Permissions - Permissions for the key -- read-only or full permissions. Possible values include: 'READ', 'FULL'
 	Permissions KeyPermission `json:"permissions,omitempty"`
 }
 
@@ -561,7 +437,7 @@ type AccountListResult struct {
 	Value *[]Account `json:"value,omitempty"`
 }
 
-// AccountProperties properties of the storage account.
+// AccountProperties ...
 type AccountProperties struct {
 	// ProvisioningState - Gets the status of the storage account at the time the operation was called. Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'
 	ProvisioningState ProvisioningState `json:"provisioningState,omitempty"`
@@ -589,7 +465,7 @@ type AccountProperties struct {
 	AccessTier AccessTier `json:"accessTier,omitempty"`
 }
 
-// AccountPropertiesCreateParameters the parameters used to create the storage account.
+// AccountPropertiesCreateParameters ...
 type AccountPropertiesCreateParameters struct {
 	// CustomDomain - User domain assigned to the storage account. Name is the CNAME source. Only one custom domain is supported per storage account at this time. To clear the existing custom domain, use an empty string for the custom domain name property.
 	CustomDomain *CustomDomain `json:"customDomain,omitempty"`
@@ -599,7 +475,7 @@ type AccountPropertiesCreateParameters struct {
 	AccessTier AccessTier `json:"accessTier,omitempty"`
 }
 
-// AccountPropertiesUpdateParameters the parameters used when updating a storage account.
+// AccountPropertiesUpdateParameters ...
 type AccountPropertiesUpdateParameters struct {
 	// CustomDomain - Custom domain assigned to the storage account by the user. Name is the CNAME source. Only one custom domain is supported per storage account at this time. To clear the existing custom domain, use an empty string for the custom domain name property.
 	CustomDomain *CustomDomain `json:"customDomain,omitempty"`
@@ -609,29 +485,9 @@ type AccountPropertiesUpdateParameters struct {
 	AccessTier AccessTier `json:"accessTier,omitempty"`
 }
 
-// AccountRegenerateKeyParameters the parameters used to regenerate the storage account key.
+// AccountRegenerateKeyParameters ...
 type AccountRegenerateKeyParameters struct {
 	KeyName *string `json:"keyName,omitempty"`
-}
-
-// AccountSasParameters the parameters to list SAS credentials of a storage account.
-type AccountSasParameters struct {
-	// Services - The signed services accessible with the account SAS. Possible values include: Blob (b), Queue (q), Table (t), File (f). Possible values include: 'B', 'Q', 'T', 'F'
-	Services Services `json:"signedServices,omitempty"`
-	// ResourceTypes - The signed resource types that are accessible with the account SAS. Service (s): Access to service-level APIs; Container (c): Access to container-level APIs; Object (o): Access to object-level APIs for blobs, queue messages, table entities, and files. Possible values include: 'ResourceTypesS', 'ResourceTypesC', 'ResourceTypesO'
-	ResourceTypes ResourceTypes `json:"signedResourceTypes,omitempty"`
-	// Permissions - The signed permissions for the account SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). Possible values include: 'R', 'D', 'W', 'L', 'A', 'C', 'U', 'P'
-	Permissions Permissions `json:"signedPermission,omitempty"`
-	// IPAddressOrRange - An IP address or a range of IP addresses from which to accept requests.
-	IPAddressOrRange *string `json:"signedIp,omitempty"`
-	// Protocols - The protocol permitted for a request made with the account SAS. Possible values include: 'Httpshttp', 'HTTPS'
-	Protocols HTTPProtocol `json:"signedProtocol,omitempty"`
-	// SharedAccessStartTime - The time at which the SAS becomes valid.
-	SharedAccessStartTime *date.Time `json:"signedStart,omitempty"`
-	// SharedAccessExpiryTime - The time at which the shared access signature becomes invalid.
-	SharedAccessExpiryTime *date.Time `json:"signedExpiry,omitempty"`
-	// KeyToSign - The key to sign the account SAS token with.
-	KeyToSign *string `json:"keyToSign,omitempty"`
 }
 
 // AccountsCreateFuture an abstraction for monitoring and retrieving the results of a long-running operation.
@@ -781,21 +637,7 @@ type Endpoints struct {
 	File *string `json:"file,omitempty"`
 }
 
-// ListAccountSasResponse the List SAS credentials operation response.
-type ListAccountSasResponse struct {
-	autorest.Response `json:"-"`
-	// AccountSasToken - List SAS credentials of storage account.
-	AccountSasToken *string `json:"accountSasToken,omitempty"`
-}
-
-// ListServiceSasResponse the List service SAS credentials operation response.
-type ListServiceSasResponse struct {
-	autorest.Response `json:"-"`
-	// ServiceSasToken - List service SAS credentials of speicific resource.
-	ServiceSasToken *string `json:"serviceSasToken,omitempty"`
-}
-
-// Resource describes a storage resource.
+// Resource ...
 type Resource struct {
 	// ID - Resource Id
 	ID *string `json:"id,omitempty"`
@@ -828,46 +670,6 @@ func (r Resource) MarshalJSON() ([]byte, error) {
 		objectMap["tags"] = r.Tags
 	}
 	return json.Marshal(objectMap)
-}
-
-// ServiceSasParameters the parameters to list service SAS credentials of a speicific resource.
-type ServiceSasParameters struct {
-	// CanonicalizedResource - The canonical path to the signed resource.
-	CanonicalizedResource *string `json:"canonicalizedResource,omitempty"`
-	// Resource - The signed services accessible with the service SAS. Possible values include: Blob (b), Container (c), File (f), Share (s). Possible values include: 'ResourceEnumB', 'ResourceEnumC', 'ResourceEnumF', 'ResourceEnumS'
-	Resource ResourceEnum `json:"signedResource,omitempty"`
-	// Permissions - The signed permissions for the service SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). Possible values include: 'Permissions1R', 'Permissions1D', 'Permissions1W', 'Permissions1L', 'Permissions1A', 'Permissions1C', 'Permissions1U', 'Permissions1P'
-	Permissions Permissions1 `json:"signedPermission,omitempty"`
-	// IPAddressOrRange - An IP address or a range of IP addresses from which to accept requests.
-	IPAddressOrRange *string `json:"signedIp,omitempty"`
-	// Protocols - The protocol permitted for a request made with the account SAS. Possible values include: 'Httpshttp', 'HTTPS'
-	Protocols HTTPProtocol `json:"signedProtocol,omitempty"`
-	// SharedAccessStartTime - The time at which the SAS becomes valid.
-	SharedAccessStartTime *date.Time `json:"signedStart,omitempty"`
-	// SharedAccessExpiryTime - The time at which the shared access signature becomes invalid.
-	SharedAccessExpiryTime *date.Time `json:"signedExpiry,omitempty"`
-	// Identifier - A unique value up to 64 characters in length that correlates to an access policy specified for the container, queue, or table.
-	Identifier *string `json:"signedIdentifier,omitempty"`
-	// PartitionKeyStart - The start of partition key.
-	PartitionKeyStart *string `json:"startPk,omitempty"`
-	// PartitionKeyEnd - The end of partition key.
-	PartitionKeyEnd *string `json:"endPk,omitempty"`
-	// RowKeyStart - The start of row key.
-	RowKeyStart *string `json:"startRk,omitempty"`
-	// RowKeyEnd - The end of row key.
-	RowKeyEnd *string `json:"endRk,omitempty"`
-	// KeyToSign - The key to sign the account SAS token with.
-	KeyToSign *string `json:"keyToSign,omitempty"`
-	// CacheControl - The response header override for cache control.
-	CacheControl *string `json:"rscc,omitempty"`
-	// ContentDisposition - The response header override for content disposition.
-	ContentDisposition *string `json:"rscd,omitempty"`
-	// ContentEncoding - The response header override for content encoding.
-	ContentEncoding *string `json:"rsce,omitempty"`
-	// ContentLanguage - The response header override for content language.
-	ContentLanguage *string `json:"rscl,omitempty"`
-	// ContentType - The response header override for content type.
-	ContentType *string `json:"rsct,omitempty"`
 }
 
 // Sku the SKU of the storage account.
