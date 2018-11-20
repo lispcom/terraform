@@ -25,7 +25,7 @@ func (b *Backend) Workspaces() ([]string, error) {
 		Prefix: prefix,
 	}
 
-	ctx := context.Background()
+	ctx := context.TODO()
 	client, err := b.armClient.getBlobClient(ctx)
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ func (b *Backend) DeleteWorkspace(name string) error {
 		return fmt.Errorf("can't delete default state")
 	}
 
-	ctx := context.Background()
+	ctx := context.TODO()
 	client, err := b.armClient.getBlobClient(ctx)
 	if err != nil {
 		return err
@@ -77,7 +77,7 @@ func (b *Backend) DeleteWorkspace(name string) error {
 }
 
 func (b *Backend) StateMgr(name string) (state.State, error) {
-	ctx := context.Background()
+	ctx := context.TODO()
 	blobClient, err := b.armClient.getBlobClient(ctx)
 	if err != nil {
 		return nil, err
