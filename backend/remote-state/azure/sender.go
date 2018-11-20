@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httputil"
+	"os"
 
 	"github.com/Azure/go-autorest/autorest"
 )
@@ -19,6 +20,12 @@ func buildSender() autorest.Sender {
 func withRequestLogging() autorest.SendDecorator {
 	return func(s autorest.Sender) autorest.Sender {
 		return autorest.SenderFunc(func(r *http.Request) (*http.Response, error) {
+			// only log if logging's enabled
+			logLevel := os.Getenv("TF_LOG")
+			if logLevel == "" {
+				return s.Do(r)
+			}
+
 			// strip the authorization header prior to printing
 			authHeaderName := "Authorization"
 			auth := r.Header.Get(authHeaderName)
